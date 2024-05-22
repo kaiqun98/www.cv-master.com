@@ -28,7 +28,7 @@
             display: flex;
             flex-direction: column;
         }
-        .contact form input, .contact form textarea {
+        .contact form input, .contact form textarea, .contact form select {
             margin: 0.5rem 0;
             padding: 0.5rem;
             font-size: 1rem;
@@ -55,10 +55,31 @@
         }
     </style>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript">
         (function(){
             emailjs.init("H8JwKUYNlC3VgShx9"); // Your EmailJS public key
         })();
+
+        function formSubmit(event) {
+            event.preventDefault();
+            console.log('Form submission initiated');
+
+            const recaptchaResponse = document.getElementById('g-recaptcha-response').value;
+            if (!recaptchaResponse) {
+                document.getElementById('status').innerText = 'Please complete the reCAPTCHA.';
+                return;
+            }
+
+            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('status').innerText = 'Success! I will email back soon';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    document.getElementById('status').innerText = 'Failed to send message. Please try again.';
+                });
+        }
     </script>
 </head>
 <body>
@@ -72,7 +93,7 @@
         <img src="Weiqing_Photo.jpg" alt="Weiqing Photo">
         <div>
             <h2>About Me</h2>
-            <p>Welcome to our CV revision service! My name is Weiqing, balabala .... I offer professional CV editing and revision to help you stand out in your job applications. Our experts have years of experience in crafting high-quality CVs that get noticed by employers.</p>
+            <p>Welcome to our CV revision service! My name is Weiqing. I offer professional CV editing and revision to help you stand out in your job applications. Our experts have years of experience in crafting high-quality CVs that get noticed by employers.</p>
         </div>
     </section>
 
@@ -89,35 +110,32 @@
 
     <section class="contact">
         <h2>Contact Me</h2>
-        <form id="contact-form">
+        <form id="contact-form" enctype="multipart/form-data" onsubmit="formSubmit(event)">
             <label for="from_name">Name:</label>
             <input type="text" id="from_name" name="from_name" required>
             
             <label for="from_email">Email:</label>
             <input type="email" id="from_email" name="from_email" required>
+
+            <label for="topic">Topic:</label>
+            <select id="topic" name="topic" required>
+                <option value="">Select One</option>
+                <option value="Free Critique of Current Resume">Free Critique of Current Resume</option>
+                <option value="Questions about Our Resume Writing Service">Questions about Our Resume Writing Service</option>
+                <option value="Existing Client Support">Existing Client Support</option>
+                <option value="Other/Not Listed Here">Other/Not Listed Here</option>
+            </select>
             
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
+
+            <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
             
             <button type="submit">Send</button>
         </form>
         <p id="status"></p>
     </section>
 </div>
-
-<script type="text/javascript">
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
-            .then(function(response) {
-                document.getElementById('status').innerText = 'Success! I will email back soon';
-            }, function(error) {
-                document.getElementById('status').innerText = 'Failed to send message. Please try again.';
-                console.error('EmailJS error:', error);
-            });
-    });
-</script>
 
 </body>
 </html>
