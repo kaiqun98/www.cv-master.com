@@ -64,11 +64,7 @@
             event.preventDefault();
             console.log('Form submission initiated');
 
-            // Append topic to the message
             const form = event.target;
-            const topic = form.topic.value;
-            const message = form.message.value;
-            form.message.value = `Topic: ${topic}\n\n${message}`;
 
             emailjs.sendForm('service_m54nppb', 'template_i5jcz88', form)
                 .then(function(response) {
