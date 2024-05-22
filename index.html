@@ -55,7 +55,6 @@
         }
     </style>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript">
         (function(){
             emailjs.init("H8JwKUYNlC3VgShx9"); // Your EmailJS public key
@@ -65,26 +64,20 @@
             event.preventDefault();
             console.log('Form submission initiated');
 
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LfbYuUpAAAAAKD3i_jZw7SMB9qJuBi6I24A8IuY', {action: 'submit'}).then(function(token) {
-                    const form = event.target;
-                    const topic = form.topic.value;
-                    const message = form.message.value;
-                    form.message.value = `Topic: ${topic}\n\n${message}`;
+            // Append topic to the message
+            const form = event.target;
+            const topic = form.topic.value;
+            const message = form.message.value;
+            form.message.value = `Topic: ${topic}\n\n${message}`;
 
-                    const formData = new FormData(form);
-                    formData.append('g-recaptcha-response', token);
-
-                    emailjs.sendForm('service_m54nppb', 'template_i5jcz88', formData)
-                        .then(function(response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                            document.getElementById('status').innerText = 'Success! I will email back soon';
-                        }, function(error) {
-                            console.log('FAILED...', error);
-                            document.getElementById('status').innerText = 'Failed to send message. Please try again.';
-                        });
+            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', form)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('status').innerText = 'Success! I will email back soon';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    document.getElementById('status').innerText = 'Failed to send message. Please try again.';
                 });
-            });
         }
     </script>
 </head>
@@ -134,8 +127,6 @@
             
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
-
-            <div class="g-recaptcha" data-sitekey="6LfbYuUpAAAAAKD3i_jZw7SMB9qJuBi6I24A8IuY"></div>
             
             <button type="submit">Send</button>
         </form>
