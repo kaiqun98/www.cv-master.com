@@ -13,16 +13,10 @@
 
         function formSubmit(event) {
             event.preventDefault();
-            console.log('Form submission initiated');
-
-            const form = event.target;
-
-            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', form)
+            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
                 .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
                     document.getElementById('status').innerText = 'Success! I will email back soon';
                 }, function(error) {
-                    console.log('FAILED...', error);
                     document.getElementById('status').innerText = 'Failed to send message. Please try again.';
                 });
         }
@@ -31,7 +25,7 @@
 <body>
 
 <header>
-    <h1>Weiqing's CV Revision Service</h1>
+    <h1>Professional CV Revision Service</h1>
 </header>
 
 <nav>
@@ -40,6 +34,8 @@
     <a href="sample_cv.html">Sample CV</a>
     <a href="contact.html">Contact Me</a>
     <a href="faq.html">FAQ</a>
+    <a href="reviews.html">Past Customer Review</a>
+    <a href="contact_zh.html">中文</a>
 </nav>
 
 <div class="container">
