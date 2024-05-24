@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历修改服务 - 联系我们</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("H8JwKUYNlC3VgShx9"); // Your EmailJS public key
+        })();
+
+        function formSubmit(event) {
+            event.preventDefault();
+            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
+                .then(function(response) {
+                    document.getElementById('status').innerText = '成功！我会尽快回复您的邮件';
+                }, function(error) {
+                    document.getElementById('status').innerText = '发送消息失败。请再试一次。';
+                });
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>专业简历修改服务</h1>
+</header>
+
+<nav>
+    <a href="index_zh.html">首页</a>
+    <a href="service_fee_zh.html">服务费</a>
+    <a href="sample_cv_zh.html">简历样本</a>
+    <a href="contact_zh.html">联系我们</a>
+    <a href="faq_zh.html">常见问题</a>
+    <a href="reviews_zh.html">老朋友的评价</a>
+    <a href="contact.html">EN</a>
+</nav>
+
+<div class="container">
+    <section class="contact">
+        <h2>联系我们</h2>
+        <form id="contact-form" enctype="multipart/form-data" onsubmit="formSubmit(event)">
+            <label for="from_name">姓名:</label>
+            <input type="text" id="from_name" name="from_name" required>
+            
+            <label for="from_email">邮箱:</label>
+            <input type="email" id="from_email" name="from_email" required>
+
+            <label for="topic">主题:</label>
+            <select id="topic" name="topic" required>
+                <option value="">选择一个</option>
+                <option value="Free Critique of Current Resume">当前简历免费评估</option>
+                <option value="Questions about Our Resume Writing Service">关于我们简历写作服务的问题</option>
+                <option value="Existing Client Support">现有客户支持</option>
+                <option value="Other/Not Listed Here">其他/未列出</option>
+            </select>
+            
+            <label for="message">信息:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">发送</button>
+        </form>
+        <p id="status"></p>
+    </section>
+</div>
+
+</body>
+</html>
