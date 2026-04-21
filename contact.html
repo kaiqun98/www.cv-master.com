@@ -3,68 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Revision Service - Contact Me</title>
+    <title>Contact | CV Master</title>
+    <meta name="description" content="Contact CV Master to ask about resume revision, get a free critique, or discuss the right package for your application.">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("H8JwKUYNlC3VgShx9"); // Your EmailJS public key
+    <script>
+        (function () {
+            emailjs.init("H8JwKUYNlC3VgShx9");
         })();
 
         function formSubmit(event) {
             event.preventDefault();
-            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
-                .then(function(response) {
-                    document.getElementById('status').innerText = 'Success! I will email back soon';
-                }, function(error) {
-                    document.getElementById('status').innerText = 'Failed to send message. Please try again.';
-                });
+            const form = event.target;
+            const status = document.getElementById("status");
+
+            status.textContent = "Sending your message...";
+
+            emailjs.sendForm("service_m54nppb", "template_i5jcz88", form).then(function () {
+                status.textContent = "Success! I will email back soon.";
+                form.reset();
+            }, function () {
+                status.textContent = "Failed to send your message. Please try again.";
+            });
         }
     </script>
 </head>
 <body>
-
-<header>
-    <h1>Professional CV Revision Service</h1>
+<header class="site-header">
+    <div class="nav-shell">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">CV</span>
+            <span class="brand-copy">
+                <strong>CV Master</strong>
+                <small>Bilingual resume revision</small>
+            </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+        <nav class="site-nav" id="site-nav">
+            <a href="index.html">Home</a>
+            <a href="service_fee.html">Pricing</a>
+            <a href="sample_cv.html">Samples</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html" aria-current="page">Contact</a>
+            <a href="contact_zh.html">中文</a>
+        </nav>
+    </div>
 </header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="service_fee.html">Service Fee</a>
-    <a href="sample_cv.html">Sample CV</a>
-    <a href="contact.html">Contact Me</a>
-    <a href="faq.html">FAQ</a>
-    <a href="reviews.html">Past Customer Review</a>
-    <a href="contact_zh.html">中文</a>
-</nav>
-
-<div class="container">
-    <section class="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form" enctype="multipart/form-data" onsubmit="formSubmit(event)">
-            <label for="from_name">Name:</label>
-            <input type="text" id="from_name" name="from_name" required>
-            
-            <label for="from_email">Email:</label>
-            <input type="email" id="from_email" name="from_email" required>
-
-            <label for="topic">Topic:</label>
-            <select id="topic" name="topic" required>
-                <option value="">Select One</option>
-                <option value="Free Critique of Current Resume">Free Critique of Current Resume</option>
-                <option value="Questions about Our Resume Writing Service">Questions about Our Resume Writing Service</option>
-                <option value="Existing Client Support">Existing Client Support</option>
-                <option value="Other/Not Listed Here">Other/Not Listed Here</option>
-            </select>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            
-            <button type="submit">Send</button>
-        </form>
-        <p id="status"></p>
+<main class="page-shell">
+    <section class="section page-intro">
+        <span class="eyebrow">Contact</span>
+        <h1>Tell me where your current CV is getting stuck.</h1>
+        <p>If you already know what you need, great. If you only know that your resume feels weak, that is enough to start too.</p>
     </section>
-</div>
 
+    <section class="section contact-layout">
+        <article class="contact-card">
+            <h2>Send a message</h2>
+            <p>Use the form below to ask about your package, request a free critique of your current resume, or describe the role you are targeting.</p>
+            <form class="contact-form" id="contact-form" onsubmit="formSubmit(event)">
+                <div class="form-field">
+                    <label for="from_name">Name</label>
+                    <input type="text" id="from_name" name="from_name" required>
+                </div>
+                <div class="form-field">
+                    <label for="from_email">Email</label>
+                    <input type="email" id="from_email" name="from_email" required>
+                </div>
+                <div class="form-field">
+                    <label for="topic">Topic</label>
+                    <select id="topic" name="topic" required>
+                        <option value="">Select one</option>
+                        <option value="Free Critique of Current Resume">Free critique of current resume</option>
+                        <option value="Questions about Our Resume Writing Service">Questions about the service</option>
+                        <option value="Existing Client Support">Existing client support</option>
+                        <option value="Other/Not Listed Here">Other</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button class="button" type="submit">Send message</button>
+                <p class="status" id="status"></p>
+            </form>
+        </article>
+
+        <aside class="contact-card">
+            <h2>Helpful details to include</h2>
+            <p>A short, clear message is enough. If you want faster feedback, these details help:</p>
+            <ul class="muted-list">
+                <li>Your target role, program, or industry</li>
+                <li>Whether the CV is in English, Chinese, or both</li>
+                <li>What feels weakest right now: content, tone, structure, or wording</li>
+                <li>Whether you need only review notes or a full revision</li>
+            </ul>
+            <div class="note-banner">
+                <strong>Good fit:</strong>
+                <span>If your resume feels too generic, too crowded, or not strong enough to submit confidently, this service is built for exactly that stage.</span>
+            </div>
+        </aside>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div>
+            <strong>CV Master</strong>
+            <p>Start with a short message and we can figure out the right level of support from there.</p>
+        </div>
+        <div class="footer-links">
+            <a href="service_fee.html">Pricing</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
 </body>
 </html>

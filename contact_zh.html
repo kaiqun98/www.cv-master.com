@@ -1,70 +1,130 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简历修改服务 - 联系我们</title>
+    <title>联系 | CV Master</title>
+    <meta name="description" content="联系 CV Master，咨询简历修改、免费评估或适合你的服务套餐。">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("H8JwKUYNlC3VgShx9"); // Your EmailJS public key
+    <script>
+        (function () {
+            emailjs.init("H8JwKUYNlC3VgShx9");
         })();
 
         function formSubmit(event) {
             event.preventDefault();
-            emailjs.sendForm('service_m54nppb', 'template_i5jcz88', this)
-                .then(function(response) {
-                    document.getElementById('status').innerText = '成功！我会尽快回复您的邮件';
-                }, function(error) {
-                    document.getElementById('status').innerText = '发送消息失败。请再试一次。';
-                });
+            const form = event.target;
+            const status = document.getElementById("status");
+
+            status.textContent = "正在发送消息...";
+
+            emailjs.sendForm("service_m54nppb", "template_i5jcz88", form).then(function () {
+                status.textContent = "发送成功，我会尽快回复你。";
+                form.reset();
+            }, function () {
+                status.textContent = "发送失败，请稍后再试。";
+            });
         }
     </script>
 </head>
 <body>
-
-<header>
-    <h1>专业简历修改服务</h1>
+<header class="site-header">
+    <div class="nav-shell">
+        <a class="brand" href="index_zh.html">
+            <span class="brand-mark">CV</span>
+            <span class="brand-copy">
+                <strong>CV Master</strong>
+                <small>中英文简历修改</small>
+            </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">切换导航</span>
+        </button>
+        <nav class="site-nav" id="site-nav">
+            <a href="index_zh.html">首页</a>
+            <a href="service_fee_zh.html">价格</a>
+            <a href="sample_cv_zh.html">样本</a>
+            <a href="reviews_zh.html">评价</a>
+            <a href="faq_zh.html">常见问题</a>
+            <a href="contact_zh.html" aria-current="page">联系</a>
+            <a href="contact.html">EN</a>
+        </nav>
+    </div>
 </header>
 
-<nav>
-    <a href="index_zh.html">首页</a>
-    <a href="service_fee_zh.html">服务费</a>
-    <a href="sample_cv_zh.html">简历样本</a>
-    <a href="contact_zh.html">联系我们</a>
-    <a href="faq_zh.html">常见问题</a>
-    <a href="reviews_zh.html">老朋友的评价</a>
-    <a href="contact.html">EN</a>
-</nav>
-
-<div class="container">
-    <section class="contact">
-        <h2>联系我们</h2>
-        <form id="contact-form" enctype="multipart/form-data" onsubmit="formSubmit(event)">
-            <label for="from_name">姓名:</label>
-            <input type="text" id="from_name" name="from_name" required>
-            
-            <label for="from_email">邮箱:</label>
-            <input type="email" id="from_email" name="from_email" required>
-
-            <label for="topic">主题:</label>
-            <select id="topic" name="topic" required>
-                <option value="">选择一个</option>
-                <option value="Free Critique of Current Resume">当前简历免费评估</option>
-                <option value="Questions about Our Resume Writing Service">关于我们简历写作服务的问题</option>
-                <option value="Existing Client Support">现有客户支持</option>
-                <option value="Other/Not Listed Here">其他/未列出</option>
-            </select>
-            
-            <label for="message">信息:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            
-            <button type="submit">发送</button>
-        </form>
-        <p id="status"></p>
+<main class="page-shell">
+    <section class="section page-intro">
+        <span class="eyebrow">联系</span>
+        <h1>告诉我，你的简历现在卡在哪里。</h1>
+        <p>如果你已经知道自己要买哪个套餐，那很好。如果你只知道“这份简历看着不够行”，那也完全足够开始。</p>
     </section>
-</div>
 
+    <section class="section contact-layout">
+        <article class="contact-card">
+            <h2>发送消息</h2>
+            <p>你可以通过下面的表单咨询套餐、申请免费评估，或者直接说明你正在申请什么岗位、目前最想改什么。</p>
+            <form class="contact-form" id="contact-form" onsubmit="formSubmit(event)">
+                <div class="form-field">
+                    <label for="from_name">姓名</label>
+                    <input type="text" id="from_name" name="from_name" required>
+                </div>
+                <div class="form-field">
+                    <label for="from_email">邮箱</label>
+                    <input type="email" id="from_email" name="from_email" required>
+                </div>
+                <div class="form-field">
+                    <label for="topic">主题</label>
+                    <select id="topic" name="topic" required>
+                        <option value="">请选择</option>
+                        <option value="Free Critique of Current Resume">当前简历免费评估</option>
+                        <option value="Questions about Our Resume Writing Service">关于服务的咨询</option>
+                        <option value="Existing Client Support">已有客户支持</option>
+                        <option value="Other/Not Listed Here">其他</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="message">留言</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button class="button" type="submit">发送消息</button>
+                <p class="status" id="status"></p>
+            </form>
+        </article>
+
+        <aside class="contact-card">
+            <h2>建议你顺手说明这些信息</h2>
+            <p>其实简短一点也可以。如果你希望更快进入正题，下面这些信息会很有帮助：</p>
+            <ul class="muted-list">
+                <li>你要申请的岗位、项目或行业方向</li>
+                <li>简历是中文、英文，还是双语场景</li>
+                <li>你觉得当前最弱的是内容、结构、语气还是表述</li>
+                <li>你是更想先评审，还是直接做完整修改</li>
+            </ul>
+            <div class="note-banner">
+                <strong>特别适合：</strong>
+                <span>如果你觉得自己的简历不够聚焦、不够专业、或者总觉得“不太敢投”，这项服务正是为这个阶段准备的。</span>
+            </div>
+        </aside>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div>
+            <strong>CV Master</strong>
+            <p>先发一条消息，再一起判断最适合你的支持方式，不需要一开始就把所有事情想清楚。</p>
+        </div>
+        <div class="footer-links">
+            <a href="service_fee_zh.html">价格</a>
+            <a href="faq_zh.html">常见问题</a>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
 </body>
 </html>

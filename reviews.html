@@ -3,50 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Revision Service - Past Customer Reviews</title>
+    <title>Client Reviews | CV Master</title>
+    <meta name="description" content="Read client feedback about CV Master resume revision services and the impact of clearer, stronger CVs.">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="reviews.css">
 </head>
 <body>
-
-<header>
-    <h1>Professional CV Revision Service</h1>
+<header class="site-header">
+    <div class="nav-shell">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">CV</span>
+            <span class="brand-copy">
+                <strong>CV Master</strong>
+                <small>Bilingual resume revision</small>
+            </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+        <nav class="site-nav" id="site-nav">
+            <a href="index.html">Home</a>
+            <a href="service_fee.html">Pricing</a>
+            <a href="sample_cv.html">Samples</a>
+            <a href="reviews.html" aria-current="page">Reviews</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+            <a href="reviews_zh.html">中文</a>
+        </nav>
+    </div>
 </header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="service_fee.html">Service Fee</a>
-    <a href="sample_cv.html">Sample CV</a>
-    <a href="contact.html">Contact Me</a>
-    <a href="faq.html">FAQ</a>
-    <a href="reviews.html">What people say</a>
-    <a href="reviews_zh.html">中文</a>
-</nav>
+<main class="page-shell">
+    <section class="section page-intro">
+        <span class="eyebrow">Client feedback</span>
+        <h1>What people say after the rewrite.</h1>
+        <p>The value of a better CV is usually felt in three places: more confidence, more clarity, and a stronger sense that the document finally represents the candidate well.</p>
+    </section>
 
-<div class="container">
-    <section class="reviews">
-        <h2>Past Customer Reviews</h2>
-        <div class="review">
-            <img src="customer1.jpg" alt="Customer 1">
-            <div class="review-text">
-                <p>"Weiqing helped me revise my CV, and I landed my dream job within weeks! Highly recommend his services." - Jane Doe</p>
-            </div>
-        </div>
-        <div class="review">
-            <img src="customer2.jpg" alt="Customer 2">
-            <div class="review-text">
-                <p>"The personalized feedback and quick turnaround time were exactly what I needed. My CV has never looked better." - John Smith</p>
-            </div>
-        </div>
-        <div class="review">
-            <img src="customer3.jpg" alt="Customer 3">
-            <div class="review-text">
-                <p>"Affordable pricing and top-notch service. Weiqing really knows how to make a CV stand out." - Mary Johnson</p>
-            </div>
+    <section class="section">
+        <div class="quote-grid">
+            <article class="quote-card">
+                <span class="quote-mark">“</span>
+                <blockquote>Weiqing helped me revise my CV, and I landed my dream job within weeks. Highly recommend his services.</blockquote>
+                <footer>Jane Doe</footer>
+            </article>
+            <article class="quote-card">
+                <span class="quote-mark">“</span>
+                <blockquote>The personalized feedback and quick turnaround time were exactly what I needed. My CV has never looked better.</blockquote>
+                <footer>John Smith</footer>
+            </article>
+            <article class="quote-card">
+                <span class="quote-mark">“</span>
+                <blockquote>Affordable pricing and top-notch service. Weiqing really knows how to make a CV stand out.</blockquote>
+                <footer>Mary Johnson</footer>
+            </article>
         </div>
     </section>
-</div>
 
-<script src="reviews.js"></script>
+    <section class="section">
+        <div class="section-heading">
+            <div>
+                <span class="card-kicker">Patterns</span>
+                <h2>The same strengths show up again and again</h2>
+            </div>
+            <p>Clients consistently point to the same outcomes, which is a good sign that the service is solving the right problem.</p>
+        </div>
+        <div class="grid-3">
+            <article class="content-card">
+                <h3 class="section-title">More confidence</h3>
+                <p>People often know they have decent experience, but do not feel their old CV proves it well. That changes after revision.</p>
+            </article>
+            <article class="content-card">
+                <h3 class="section-title">More clarity</h3>
+                <p>The strongest feedback tends to be about clarity: less vague language, better structure, and a stronger message.</p>
+            </article>
+            <article class="content-card">
+                <h3 class="section-title">Faster progress</h3>
+                <p>Quick turnaround matters when candidates are actively applying, interviewing, or trying to improve materials under time pressure.</p>
+            </article>
+        </div>
+        <div class="button-group">
+            <a class="button" href="contact.html">Start your revision</a>
+            <a class="button button-secondary" href="service_fee.html">See packages</a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div>
+            <strong>CV Master</strong>
+            <p>Real revision work should sound better, feel better, and make your next application easier to send.</p>
+        </div>
+        <div class="footer-links">
+            <a href="sample_cv.html">Samples</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
 </body>
 </html>
